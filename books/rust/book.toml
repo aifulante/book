@@ -1,0 +1,10 @@
+[book]
+authors = ["文沐"]
+language = "zh-CN"
+multilingual = false
+src = "src"
+title = "Rust简明笔记"
+description = "学习Rust产出的笔记."
+
+[build]
+build-dir = "../../docs/rust"
