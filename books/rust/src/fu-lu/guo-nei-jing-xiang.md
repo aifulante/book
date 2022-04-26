@@ -1,0 +1,16 @@
+# 国内镜像
+
+修改\~/.cargo/config 文件，如果没有就创建
+
+```bash
+[source.crates-io]
+registry = "https://github.com/rust-lang/crates.io-index"
+
+replace-with = 'tuna'
+[source.tuna]
+registry = "https://mirrors.tuna.tsinghua.edu.cn/git/crates.io-index.git"
+
+#replace-with = 'ustc'
+#[source.ustc]
+#registry = "git://mirrors.ustc.edu.cn/crates.io-index"
+```
