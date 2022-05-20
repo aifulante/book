@@ -5,7 +5,7 @@
   - [图的遍历](graph/graph-struct.md)
   - [Golang实现的图](graph/graph-struct.md)
   
-- [图数据库](graph/graph-struct.md)
+- [图数据库](graph/graph-db.md)
   - [图数据库概念](graph/graph-struct.md)
   - [几种常见的图数据库](graph/graph-struct.md)
   
