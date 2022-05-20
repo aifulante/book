@@ -133,7 +133,7 @@ func main() {
 	_, err = CreateClasses(context.Background(), client)
 	if err != nil {
 		log.Fatalf("failed creating schema resources: %v", err)
-	}
+	} 
 }
 
 func CreateUser(ctx context.Context, client *ent.Client) (*ent.User, error) {
