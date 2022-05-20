@@ -1,5 +1,3 @@
-[文档说明](introdution.md)
-
 # 图的应用
 - [图的概念](graph/graph-struct.md)
 - [图的数据结构](graph/graph-struct.md)
@@ -32,3 +30,6 @@
   - [Gorm](graph/graph-struct.md)
   
 - [一个简单的代码生成器](graph/graph-struct.md)
+
+--------
+[文档说明](introdution.md)
