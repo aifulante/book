@@ -1,5 +1,5 @@
 ## 目录的创建
-```shell
+```yaml
 # Summary
 
 [Introduction](README.md)
