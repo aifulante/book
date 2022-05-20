@@ -10,7 +10,7 @@
   - [几种常见的图数据库](graph/graph-struct.md)
   
 - Ent的应用
-  - [Ent的使用](graph/graph-struct.md)
+  - [Ent的使用](ent/ent-start.md)
   - [Entc的实现](graph/graph-struct.md)
   - [Entimport从数据表导入实体](graph/graph-struct.md)
   - [Entgrpc生成grpc服务](graph/graph-struct.md)
