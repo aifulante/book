@@ -3,8 +3,8 @@ authors = ["文沐"]
 language = "zh-CN"
 multilingual = false
 src = "src"
-title = "知识图谱"
+title = "图的应用"
 description = "探索新世界."
 
 [build]
-build-dir = "../../docs/wiki"
+build-dir = "../../docs/graph"
