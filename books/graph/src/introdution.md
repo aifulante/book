@@ -1,3 +1,23 @@
+## 配置
+```yaml
+[output.html]
+# theme = "my-theme"
+default-theme = "Coal"
+# preferred-dark-theme = "navy"
+# curly-quotes = true
+# mathjax-support = false
+# copy-fonts = true
+# # additional-css = ["custom.css", "custom2.css"]v
+# # additional-js = ["custom.js"]
+# no-section-label = false
+# git-repository-url = "https://github.com/rust-lang/mdBook"
+# git-repository-icon = "fa-github"
+# edit-url-template = "https://github.com/rust-lang/mdBook/edit/master/guide/{path}"
+# site-url = "/example-book/"
+# cname = "myproject.rs"
+# input-404 = "introdution.md"
+```
+
 ## 目录的创建
 ```yaml
 # Summary
