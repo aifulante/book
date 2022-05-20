@@ -1,0 +1,24 @@
+### 什么是图数据库
+
+**图数据库**（英语：graph database，**GDB**[[1\]](https://zh.wikipedia.org/wiki/图数据库#cite_note-1)）是一个使用[图结构](https://zh.wikipedia.org/w/index.php?title=Graph_(data_structure)&action=edit&redlink=1)进行[语义查询](https://zh.wikipedia.org/w/index.php?title=Semantic_query&action=edit&redlink=1)的[数据库](https://zh.wikipedia.org/wiki/数据库)，它使用[节点](https://zh.wikipedia.org/wiki/顶点_(图论))、[边](https://zh.wikipedia.org/wiki/图论术语)和属性来表示和存储数据。
+
+**NoSQL存储类型**：K-V存储、文档存储、列式存储、图存储。
+
+### 几种常见的图数据库对比
+
+**值得关注的图数据库**
+
+|                             名称                             |                             版本                             |      [许可证](https://zh.wikipedia.org/wiki/软件许可证)      |        [语言](https://zh.wikipedia.org/wiki/编程语言)        |                             描述                             |
+| :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
+| [Neo4j](https://zh.wikipedia.org/w/index.php?title=Neo4j&action=edit&redlink=1) | 3.3.5 (2018-04)[[17\]](https://zh.wikipedia.org/wiki/图数据库#cite_note-17) | [GPLv3](https://zh.wikipedia.org/wiki/GNU_General_Public_License) 社区版，[商业](https://zh.wikipedia.org/wiki/商业软件) & [AGPL](https://zh.wikipedia.org/wiki/Affero_General_Public_License)v3 企业和高级版 | [Java](https://zh.wikipedia.org/wiki/Java), [NET](https://zh.wikipedia.org/wiki/NET)[[需要消歧义](https://zh.wikipedia.org/wiki/Wikipedia:消歧义#链往消歧义页的链接)], [JavaScript](https://zh.wikipedia.org/wiki/JavaScript), [Python](https://zh.wikipedia.org/wiki/Python), [Ruby](https://zh.wikipedia.org/wiki/Ruby) | 开源，支持ACID，具有用于企业部署的高可用性集群，并附带基于Web的管理工具，包括完整事务支持和可视节点链接图浏览器；可以使用其内置的[REST](https://zh.wikipedia.org/wiki/表现层状态转换) Web API接口从大多数编程语言访问，以及使用官方驱动程序的专有Bolt协议；截至2019年1月最受欢迎的图数据库。[[18\]]( |
+|    [JanusGraph](https://zh.wikipedia.org/wiki/JanusGraph)    | 0.6.1 (2022-01-18)[[13\]](https://zh.wikipedia.org/wiki/图数据库#cite_note-13) | [Apache 2](https://zh.wikipedia.org/wiki/Apache_License#Version_2.0) |          [Java](https://zh.wikipedia.org/wiki/Java)          | 开源、可扩展、在[Linux基金会](https://zh.wikipedia.org/wiki/Linux基金会)下的分布式图数据库；支持各种存储后端（[Cassandra](https://zh.wikipedia.org/wiki/Cassandra)，[HBase](https://zh.wikipedia.org/wiki/HBase)，[Bigtable](https://zh.wikipedia.org/wiki/Bigtable)，[BerkeleyDB](https://zh.wikipedia.org/wiki/BerkeleyDB)）；[[14\]](https://zh.wikipedia.org/wiki/图数据库#cite_note-14) 通过与大数据平台（[Spark](https://zh.wikipedia.org/wiki/Apache_Spark)、[Giraph](https://zh.wikipedia.org/wiki/Giraph)、[Hadoop](https://zh.wikipedia.org/wiki/Hadoop)）的集成支持全局图数据分析、报告和[ETL](https://zh.wikipedia.org/wiki/ETL)；通过外部索引存储支持地理、数字范围和[全文检索](https://zh.wikipedia.org/wiki/全文檢索)（[ElasticSearch](https://zh.wikipedia.org/w/index.php?title=ElasticSearch&action=edit&redlink=1)、[Solr](https://zh.wikipedia.org/wiki/Solr)、[Lucene](https://zh.wikipedia.org/wiki/Lucene)）。[[15\]](https://zh.wikipedia.org/wiki/图数据库#cite_note-15) |
+|     [HugeGraph](https://zh.wikipedia.org/wiki/HugeGraph)     | [v0.10.4](https://hugegraph.github.io/hugegraph-doc/download.html)（[页面存档备份](https://web.archive.org/web/20191213142612/https://hugegraph.github.io/hugegraph-doc/download.html)，存于[互联网档案馆](https://zh.wikipedia.org/wiki/互联网档案馆)） （2019-11-08） | [Apache 2](https://zh.wikipedia.org/wiki/Apache_License#Version_2.0) | [Java](https://zh.wikipedia.org/wiki/Java), [Gremlin](https://zh.wikipedia.org/wiki/Gremlin), [Python](https://zh.wikipedia.org/wiki/Python) | [百度开源](https://github.com/hugegraph/hugegraph)（[页面存档备份](https://web.archive.org/web/20180803234654/https://github.com/hugegraph/hugegraph)，存于[互联网档案馆](https://zh.wikipedia.org/wiki/互联网档案馆)）的分布式图数据库。支持标准的Apache [Tinkerpop](https://zh.wikipedia.org/w/index.php?title=Tinkerpop&action=edit&redlink=1) [Gremlin](https://zh.wikipedia.org/wiki/Gremlin)图查询语言，支持属性图，可支持千亿级规模关系数据；支持多种后端存储（[Cassandra](https://zh.wikipedia.org/wiki/Cassandra)，[HBase](https://zh.wikipedia.org/wiki/HBase)，[RocksDB](https://zh.wikipedia.org/w/index.php?title=RocksDB&action=edit&redlink=1)，[MySQL](https://zh.wikipedia.org/wiki/MySQL)，[PostgreSQL](https://zh.wikipedia.org/wiki/PostgreSQL)，[ScyllaDB](https://zh.wikipedia.org/w/index.php?title=ScyllaDB&action=edit&redlink=1)）；支持各类[索引](https://zh.wikipedia.org/wiki/索引)（二级索引、范围索引、全文索引、联合索引，均无需依赖第三方索引库）；提供可视化的Web界面，可用于图建模、数据导入、图分析；提供导入工具支持从多种数据源中导入数据到图中，支持的数据源包括：CSV、HDFS、关系型数据库（MySQL、Oracle、SQL Server、PostgreSQL）；支持REST接口，并提供10+种通用的图算法；支持与Hadoop、Spark GraphX等大数据系统集成。[[12\]]( |
+
+### 相关资料
+
+- [JanusGraph官网](https://janusgraph.org/)
+- [JanusGraph中文文档](http://www.janusgraph.cn/)
+- [**Apache** **HugeGraph**官网](https://hugegraph.apache.org/cn/)
+- [neo4j官网](https://neo4j.com/)
+- [TinkerPop3 Documentation](https://tinkerpop.apache.org/docs/3.3.0/reference/#preface)
+- [Gremlin中文文档](http://tinkerpop-gremlin.cn/#traversal)

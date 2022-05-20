@@ -5,13 +5,15 @@
   - [图的遍历](graph/graph-struct.md)
   - [Golang实现的图](graph/graph-struct.md)
   
-- [图数据库](graph/graph-struct.md)
+- [图数据库](graph/graph-db.md)
   - [图数据库概念](graph/graph-struct.md)
   - [几种常见的图数据库](graph/graph-struct.md)
   
 - [Ent的应用](ent/readme.md)
   - [Ent的使用](ent/ent-start.md)
-  - [Entc的实现](graph/graph-struct.md)
+  - [Entc的实现](ent/entc-readme.md)
+    - [模板解析](ent/entc-tmpl-parse.md)
+    - [Go文件解析](ent/entc-gofile-parse.md)
   - [Entimport从数据表导入实体](graph/graph-struct.md)
   - [Entgrpc生成grpc服务](graph/graph-struct.md)
   - [Entproto生成protocol buffer](graph/graph-struct.md)
