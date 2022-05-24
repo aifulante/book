@@ -4,7 +4,7 @@
 
 图：
 
-![图](http://data.biancheng.net/uploads/allimg/170905/2-1FZ51I14M57.png)
+![图](https://picshack.net/ib/mehnlsPWiQ.png)
 
 ## DFS
 
