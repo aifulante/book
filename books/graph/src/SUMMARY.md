@@ -14,7 +14,7 @@
     - [Go文件解析](ent/entc-gofile-parse.md)
   - [Entimport从数据表导入实体](ent/ent-import.md)
   - [Entgrpc生成grpc服务](ent/ent-grpc.md)
-  - [Entproto生成protocol buffer](ent/ent-proto.md)
+  - [从Ent到GraphQL](ent/ent-gql.md)
 
 - [GraphQL的应用](gql/readme.md)
   - [GraphQL的使用](gql/gql-start.md)
