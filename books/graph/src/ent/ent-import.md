@@ -12,6 +12,24 @@ go run -mod=mod ariga.io/entimport/cmd/entimport -h
 
 ### 已经存在数据表：
 
+```sql
+create table users
+(
+    id   integer not null
+        primary key autoincrement,
+    age  integer not null,
+    name varchar(255) default 'unknown' not null
+);
+
+create table classes
+(
+    id         integer not null
+        primary key autoincrement,
+    class_name varchar(255) default 'unknown' not null,
+    score      integer      default 0 not null
+);
+
+```
 
 ### 执行以下命令导入到实体：
 
