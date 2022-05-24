@@ -27,6 +27,7 @@
   - [Gorm](ext/gorm.md)
 
 - [实践Demo](demo/readme.md)
+  - [实体框架设计era](demo/era.md)
   - [一个简单的代码生成器Gint](demo/gint.md)
 
 --------
