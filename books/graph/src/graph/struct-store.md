@@ -13,7 +13,7 @@
 > 
 > 一维数组存储图的顶点，二维数组存储图的关系。
 
-![顺序存储](http://data.biancheng.net/uploads/allimg/170905/2-1FZ5155246103.png)
+![顺序存储](https://picshack.net/ib/i9O42xj9az.png)
 
 
 ## 邻接点存储
