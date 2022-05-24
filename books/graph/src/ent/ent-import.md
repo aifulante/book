@@ -21,13 +21,20 @@ create table users
     name varchar(255) default 'unknown' not null
 );
 
+-- auto-generated definition
 create table classes
 (
-    id         integer not null
+    id           integer not null
         primary key autoincrement,
-    class_name varchar(255) default 'unknown' not null,
-    score      integer      default 0 not null
+    class_name   varchar(255) default 'unknown' not null,
+    score        integer      default 0 not null,
+    user_classes integer
+        constraint classes_users_classes
+            references users
+            on delete set null
 );
+
+
 
 ```
 
