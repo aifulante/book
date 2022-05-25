@@ -15,6 +15,10 @@
 > 用户通过Schema生成器的定义语言定义Schema的实体、边、属性、注解等内容。
 > 经由Schema生成器生成多种协议的实体和关系的抽象，进一步生成各种图查询的实体和关系的协议，例如gqlgen的schema协议。
 
+操作步骤：
+- 定义实体
+- 执行 ```shell go generate ./... ```生成实体-关系抽象，同时生成指定的schema协议（例如gqlgen schema定义）
+
 ## GraphQL server（eragql）
 
 > 通过erac生成gqlgen schema，使用gqlgen对外提供GraphQL服务
