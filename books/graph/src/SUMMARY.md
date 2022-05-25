@@ -25,9 +25,11 @@
   - [Grpc](ext/grpc.md)
   - [Spark GraphX](ext/graphX.md)
   - [Gorm](ext/gorm.md)
+    - [Gorm关联的使用](ext/gorm-relation.md)
 
 - [实践Demo](demo/readme.md)
   - [实体框架设计era](demo/era.md)
+    - [实体关系在数据库表和Go数据类型中的体现形式](demo/era-db-go-edge.md)
   - [一个简单的代码生成器Gint](demo/gint.md)
 
 --------
