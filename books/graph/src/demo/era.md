@@ -10,6 +10,8 @@
 - 提供Schema的图查询能力            -- 参考entql
 - 使用Gorm操作与数据库交互          -- 参考gorm
 
+era.大致主要包含一下四个部分：
+
 ## Schema 生成器（erac）
 
 > 用户通过Schema生成器的定义语言定义Schema的实体、边、属性、注解等内容。
