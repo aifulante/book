@@ -109,6 +109,177 @@ type (
 3. 关键的一步，结合graph和模板，生成目标文件内容。生成的文件路径和文件内容是存在于assets数组中的。当然，在写文件之前，这些全部存在于内存中。
 4. 将所有生成的文件落盘。
 
+### 内置模板
+
+```go
+var (
+	// Templates 保存图形正在生成的文件的模板信息。
+	Templates = []TypeTemplate{
+		{
+			Name:   "create",
+			Format: pkgf("%s_create.go"),
+			ExtendPatterns: []string{
+				"dialect/*/create/fields/additional/*",
+				"dialect/*/create_bulk/fields/additional/*",
+			},
+		},
+		{
+			Name:   "update",
+			Format: pkgf("%s_update.go"),
+		},
+		{
+			Name:   "delete",
+			Format: pkgf("%s_delete.go"),
+		},
+		{
+			Name:   "query",
+			Format: pkgf("%s_query.go"),
+			ExtendPatterns: []string{
+				"dialect/*/query/fields/additional/*",
+			},
+		},
+		{
+			Name:   "model",
+			Format: pkgf("%s.go"),
+		},
+		{
+			Name:   "where",
+			Format: pkgf("%s/where.go"),
+			ExtendPatterns: []string{
+				"where/additional/*",
+			},
+		},
+		{
+			Name: "meta",
+			Format: func(t *Type) string {
+				return fmt.Sprintf("%[1]s/%[1]s.go", t.PackageDir())
+			},
+			ExtendPatterns: []string{
+				"meta/additional/*",
+			},
+		},
+	}
+	// GraphTemplates保存应用于图表的模板。
+	GraphTemplates = []GraphTemplate{
+		{
+			Name:   "base",
+			Format: "ent.go",
+		},
+		{
+			Name:   "client",
+			Format: "client.go",
+			ExtendPatterns: []string{
+				"client/fields/additional/*",
+				"dialect/*/query/fields/init/*",
+			},
+		},
+		{
+			Name:   "context",
+			Format: "context.go",
+		},
+		{
+			Name:   "tx",
+			Format: "tx.go",
+		},
+		{
+			Name:   "config",
+			Format: "config.go",
+			ExtendPatterns: []string{
+				"dialect/*/config/*/*",
+			},
+		},
+		{
+			Name:   "mutation",
+			Format: "mutation.go",
+		},
+		{
+			Name:   "migrate",
+			Format: "migrate/migrate.go",
+			Skip:   func(g *Graph) bool { return !g.SupportMigrate() },
+		},
+		{
+			Name:   "schema",
+			Format: "migrate/schema.go",
+			Skip:   func(g *Graph) bool { return !g.SupportMigrate() },
+		},
+		{
+			Name:   "predicate",
+			Format: "predicate/predicate.go",
+		},
+		{
+			Name:   "hook",
+			Format: "hook/hook.go",
+		},
+		{
+			Name:   "privacy",
+			Format: "privacy/privacy.go",
+			Skip: func(g *Graph) bool {
+				return !g.featureEnabled(FeaturePrivacy)
+			},
+		},
+		{
+			Name:   "entql",
+			Format: "entql.go",
+			Skip: func(g *Graph) bool {
+				return !g.featureEnabled(FeatureEntQL)
+			},
+		},
+		{
+			Name:   "runtime/ent",
+			Format: "runtime.go",
+		},
+		{
+			Name:   "enttest",
+			Format: "enttest/enttest.go",
+		},
+		{
+			Name:   "runtime/pkg",
+			Format: "runtime/runtime.go",
+		},
+	}
+```
+
+### 初始化Graph
+
+```go
+// NewGraph creates a new Graph for the code generation from the given schema definitions.
+// It fails if one of the schemas is invalid.
+//从给定的sschema定义中生成图
+//如果任意一个图创建失败，则schema是不可用的
+func NewGraph(c *Config, schemas ...*load.Schema) (g *Graph, err error) {
+	defer catch(&err)
+	//传入配置，schema初始化图
+	g = &Graph{c, make([]*Type, 0, len(schemas)), schemas}
+	//遍历shcema，添加为图的节点
+	for i := range schemas {
+		g.addNode(schemas[i])
+	}
+	//遍历schema添加边
+	for i := range schemas {
+		g.addEdges(schemas[i])
+	}
+	//处理每个节点的边 变得四种关系
+	for _, t := range g.Nodes {
+		check(resolve(t), "resolve %q relations", t.Name)
+	}
+	//为每个边创建外键
+	for _, t := range g.Nodes {
+		check(t.setupFKs(), "set %q foreign-keys", t.Name)
+	}
+	//遍历shcema。添加索引到图中
+	for i := range schemas {
+		g.addIndexes(schemas[i])
+	}
+	//为了房子冲突，为导入的包定义本地别名
+	aliases(g)
+	//执行一下默认的内容，比如进行id类型的设置
+	g.defaults()
+	return
+}
+```
+
+### 生成代码
+
 **生成代码的核心**是运用了text/template包来完成的
 
 ```go
@@ -116,6 +287,52 @@ type (
 b := bytes.NewBuffer(nil)
 if err := templates.ExecuteTemplate(b, tmpl.Name, g); err != nil {
   return fmt.Errorf("execute template %q: %w", tmpl.Name, err)
+}
+```
+
+### 写文件，格式化
+
+```go
+type (
+	file struct {
+		path    string
+		content []byte
+	}
+	assets struct {
+		//涉及的目录存在这里,在写文件之前,创建他们
+		dirs  []string
+		files []file
+	}
+)
+
+// 在资产中写入文件和目录。
+func (a assets) write() error {
+	for _, dir := range a.dirs {
+		if err := os.MkdirAll(dir, os.ModePerm); err != nil {
+			return fmt.Errorf("create dir %q: %w", dir, err)
+		}
+	}
+	for _, file := range a.files {
+		if err := os.WriteFile(file.path, file.content, 0644); err != nil {
+			return fmt.Errorf("write file %q: %w", file.path, err)
+		}
+	}
+	return nil
+}
+
+// format runs "goimports" on all assets.
+func (a assets) format() error {
+	for _, file := range a.files {
+		path := file.path
+		src, err := imports.Process(path, file.content, nil)
+		if err != nil {
+			return fmt.Errorf("format file %s: %w", path, err)
+		}
+		if err := os.WriteFile(path, src, 0644); err != nil {
+			return fmt.Errorf("write file %s: %w", path, err)
+		}
+	}
+	return nil
 }
 ```
 
