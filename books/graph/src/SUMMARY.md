@@ -12,6 +12,7 @@
   - [Entc的实现](ent/entc-readme.md)
     - [模板解析](ent/entc-tmpl-parse.md)
     - [Go文件解析](ent/entc-gofile-parse.md)
+    - [代码生成过程分析](ent/entc-code-gen.md)
   - [Entimport从数据表导入实体](ent/ent-import.md)
   - [Entgrpc生成grpc服务](ent/ent-grpc.md)
   - [从Ent到GraphQL](ent/ent-gql.md)
