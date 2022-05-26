@@ -103,13 +103,14 @@ type (
 
 ## 基于模板的生成代码过程分析
 
-大致的流程是这样的:
-1. 在系统内部定义了要生成的文件的模板，模板的名称和路径等数据，内置在[]Template数组中，以在生成目标文件的时候调用。
-2. 处理Schema数据。在对Schema数据经过一系列的校验、转换等操作后加载到Graph中。比如：将schema转为Graph的节点，转换节点的属性，转换节点的边，转换节点的索引等等。
-3. 关键的一步，结合graph和模板，生成目标文件内容。生成的文件路径和文件内容是存在于assets数组中的。当然，在写文件之前，这些全部存在于内存中。
-4. 将所有生成的文件落盘。
+**大致的流程是这样的:**
 
-### 内置模板
+	1. 在系统内部定义了要生成的文件的模板，模板的名称和路径等数据，内置在[]Template数组中，以在生成目标文件的时候调用。
+	2. 处理Schema数据。在对Schema数据经过一系列的校验、转换等操作后加载到Graph中。比如：将schema转为Graph的节点，转换节点的属性，转换节点的边，转换节点的索引等等。
+	3. 关键的一步，结合graph和模板，生成目标文件内容。生成的文件路径和文件内容是存在于assets数组中的。当然，在写文件之前，这些全部存在于内存中。
+	4. 将所有生成的文件落盘。
+
+### 1. 内置模板
 
 ```go
 var (
@@ -239,7 +240,7 @@ var (
 	}
 ```
 
-### 初始化Graph
+### 2. 初始化Graph
 
 ```go
 // NewGraph creates a new Graph for the code generation from the given schema definitions.
@@ -278,7 +279,7 @@ func NewGraph(c *Config, schemas ...*load.Schema) (g *Graph, err error) {
 }
 ```
 
-### 生成代码
+### 3. 生成代码
 
 **生成代码的核心**是运用了text/template包来完成的
 
@@ -290,7 +291,7 @@ if err := templates.ExecuteTemplate(b, tmpl.Name, g); err != nil {
 }
 ```
 
-### 写文件，格式化
+### 4. 写文件，格式化
 
 ```go
 type (
