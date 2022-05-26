@@ -22,6 +22,7 @@
   - [gqlgen的使用](gql/gql-gqlgen.md)
 
 - [扩展内容](ext/readme.md)
+  - [Go包text/template语法解析](ext/go-text-template.md)
   - [Protobuf](ext/protobuf.md)
   - [Grpc](ext/grpc.md)
   - [Spark GraphX](ext/graphX.md)

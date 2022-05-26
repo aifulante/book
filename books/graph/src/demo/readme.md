@@ -8,4 +8,4 @@
     
 - 一个简单的代码生成器（Gint）
 
-    Gint提供从实体到CURD-L的能力，它是基于Gorm的，Gorm很好的提供了对不同数据库的orm支持。
+    Gint提供从实体到CURD-L的能力，存储层基于Gorm实现，server使用了Gin框架。
