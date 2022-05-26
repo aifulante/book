@@ -126,6 +126,11 @@ func main()  {
 	db.Select(clause.Associations).Delete(&User{Id: 7})
 }
 
+//输出：
+//count: 2
+//orders: [{2 1664 1653532944 [] 2} {3 1664 1653533385 [] 2}]
+//goods: [{2 雪梨 128 2} {3 雪梨 128 3}]
+
 ```
 
 ## 数据表展示
