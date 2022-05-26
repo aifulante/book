@@ -1,3 +1,17 @@
+## 命令行工具
+
+mdbook命令行工具用于创建和构建图书。安装mdbook后，可以在终端执行mdbook help命令查看可用的命令。
+
+下面的部分提供了关于不同命令的深入信息。
+
+    mdbook init <directory> — Creates a new book with minimal boilerplate to start with.
+    mdbook build — Renders the book.
+    mdbook watch — Rebuilds the book any time a source file changes.
+    mdbook serve — Runs a web server to view the book, and rebuilds on changes.
+    mdbook test — Tests Rust code samples.
+    mdbook clean — Deletes the rendered output.
+    mdbook completions — Support for shell auto-completion.
+    
 ## 配置
 ```yaml
 [output.html]
