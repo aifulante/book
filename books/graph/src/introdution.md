@@ -1,3 +1,7 @@
+## 安装
+
+从这里下载[GitHub Releases page](https://github.com/rust-lang/mdBook/releases)
+
 ## 命令行工具
 
 mdbook命令行工具用于创建和构建图书。安装mdbook后，可以在终端执行mdbook help命令查看可用的命令。
