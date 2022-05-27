@@ -146,6 +146,23 @@ if err != nil {
 }
 ```
 
+## 加载匹配的所有的模板
+
+```go
+//go:embed tpl/*
+templateDir embed.FS
+var patternTmpl = []string{
+	"tpl/migrate/*.tpl",
+	"tpl/*.tpl",
+}
+tmpl := template.Must(template.ParseFS(templateDir,patternTmpl...))
+name := "create,tpl"
+data := "User"
+if err := tmpl.ExecuteTemplate(b, name, data); err != nil {
+	log.Printf("execute template %q: %w", tmpl.Name, err)
+}
+```
+
 ## 在模板内使用自定义函数 funcMap
 
 ```go
