@@ -41,16 +41,22 @@ action主要分为俩类内容：
 
 eq
 	 返回 arg1 == arg2 的布尔值
+	 
 ne
 	 返回 arg1 != arg2 的布尔值
+	 
 lt
 	 返回 arg1 < arg2 的布尔值
+	 
 le
 	 返回 arg1 <= arg2 的布尔值
+	 
 gt
 	 返回 arg1 > arg2 的布尔值
+	 
 ge
 	 返回 arg1 >= arg2 的布尔值
+	 
 
 ### 变量
 
@@ -78,21 +84,30 @@ ge
 
 html
 返回转义后的 HTML 字符串，这个函数不能在 html/template 中使用。
+
 js
 返回转义后的 JavaScript 字符串。
+
 index
 在第一个参数是 array、slice、map 时使用，返回对应下标的值。
+
 index x 1 2 3 等于 x[1][2][3]。
+
 len
 返回复合类型的长度。
+
 not
 返回布尔类型参数的相反值。
+
 print
 等于 fmt.Sprint。
+
 printf
 等于 fmt.Sprintf。
+
 println
 等于 fmt.Sprintln。
+
 urlquery
 对字符串进行 url Query 转义，不能在 html/template 包中使用。
 
