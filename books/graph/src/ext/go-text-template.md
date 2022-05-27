@@ -213,7 +213,8 @@ Output 2: {{printf "%q" . | title}}
 
 ## 参考资料
 
-[text/template](https://pkg.go.dev/text/template)
-[Go 语言标准库 text/template 包深入浅出
+- [text/template](https://pkg.go.dev/text/template)
+
+- [Go 语言标准库 text/template 包深入浅出
 ](https://juejin.cn/post/6844903762901860360)
 
