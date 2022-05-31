@@ -1,71 +1,108 @@
 
 # 一个简单的代码生成器（Gint）
 
-    Gint提供从实体到CURD-L的能力，它是基于Gorm的，Gorm很好的提供了对不同数据库的orm支持。
+    Gint提供从实体到CURD-L的能力，存储层基于Gorm实现，server使用了Gin框架。
 
 ## Gint初始化
 
-执行Gint初始化，可以方便的得到一个Schema定义的代码框架。
+新建项目
 
 ```shell
-go run gitee.com/wennmu/gint.git init User Link
+go mod init ginttest
+cd ginttest
+go mod tidy
+```
+
+执行Gint初始化，可以方便的得到一个Schema定义的框架。
+
+```shell
+go run gitee.com/wennmu/gint.git init
 ```
 
 生成的代码目录：
 
 ```shell
 --gint
-----schema
-------user.go
-------link.go
-----generate.go
+----gint.yml  // schema定义文件
+----generate.go // 生成代码脚本
 ```
 
-## 定义实体以及边 TODO
+## 定义实体以及边
 
-```go
-package schema
+> 在gint.yml配置文件中增加实体定义
 
-import (
-    gint "gitee.com/wennmu/gint.git/cmd"
-)
-
-type User struct {
-	gint.Schema
-}
-
-func (User) Fields() []gint.Field {
-	return nil
-}
-
-func (User) Edges() []gint.Edge {
-    // Not currently supported
-	return nil
-}
-
+```yaml
+varsion: 1
+schemas:
+  - name: User
+    fields:
+      - name: name
+        ftype: string
+        anno:
+      - name: Addr
+        ftype: string
+        anno:
+      - name: Phone
+        ftype: string
+        anno:
+    edges:
+      - from: Team
+        to: Order
+        mode: 2
 ```
 
-## 生成代码 TODO
+## 生成代码
 
 执行命令生成schema的代码。
 
 ```shell
-go run gitee.com/wennmu/gint.git init User Link
+go generate ./...
 ```
 
-## 调用测试 TODO
+## 启动服务
 
-在main.go中添加如下代码：
+新建main.go添加如下代码：
 
 ```go
-// 添加用户链接
+package main
 
-// 创建一个用户，把链接添加到用户
+import (
+	"fmt"
+	"ginttest/gint"
+	"github.com/gin-gonic/gin"
+	"gorm.io/driver/sqlite"
+	"gorm.io/gorm"
+	"log"
+)
 
-// 查询用户以及用户的链接
+func main()  {
+	db, err := gint.Open(sqlite.Open("gint.db"), &gorm.Config{})
+	if err != nil {
+		log.Fatal("open db err")
+	}
+	if err = db.CreateMigrate(); err != nil {
+		log.Fatal("migrate err")
+	}
+
+	r := gin.Default()
+
+	gint.RegisterGintRouter(r, "api", func(c *gin.Context) {
+		fmt.Println("中间件")
+		c.Next()
+	})
+
+	err = r.Run(":8000")
+	if err != nil {
+		panic(err)
+		return
+	}
+}
 
 ```
 
-## 数据库中的表 TODO
 
-生成的表结构
+## Gint仓库
+
+Github: github.com/wennmu/gint.git
+
+Gitee: gitee.com/wennmu/gint.git
