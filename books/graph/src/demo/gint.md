@@ -5,6 +5,14 @@
 
 ## Gint初始化
 
+新建项目
+
+```shell
+go mod init ginttest
+cd ginttest
+go mod tidy
+```
+
 执行Gint初始化，可以方便的得到一个Schema定义的框架。
 
 ```shell
@@ -20,6 +28,8 @@ go run gitee.com/wennmu/gint.git init
 ```
 
 ## 定义实体以及边
+
+> 在gint.yml配置文件中增加实体定义
 
 ```yaml
 varsion: 1
@@ -51,7 +61,7 @@ go generate ./...
 
 ## 启动服务
 
-在main.go中添加如下代码：
+新建main.go添加如下代码：
 
 ```go
 package main
